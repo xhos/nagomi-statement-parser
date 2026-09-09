@@ -1,6 +1,6 @@
-# arian-statement-parser
+# nagomi-statement-parser
 
-Wraps [andrewscwei's rbc-statement-parser](https://github.com/andrewscwei/rbc-statement-parser) to parse RBC PDF statements and upload transactions to [ariand](https://github.com/xhos/ariand).
+Wraps [andrewscwei's rbc-statement-parser](https://github.com/andrewscwei/rbc-statement-parser) to parse RBC PDF statements and upload transactions to [nagomi-core](https://github.com/xhos/nagomi-core).
 
 ## Setup
 

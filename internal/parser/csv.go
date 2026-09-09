@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"null-statement-parser/internal/domain"
+	"nagomi-statement-parser/internal/domain"
 )
 
 type CSVParser struct{}

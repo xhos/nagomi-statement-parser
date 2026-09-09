@@ -10,11 +10,11 @@ import (
 	"strconv"
 	"strings"
 
-	"null-statement-parser/internal/client"
-	"null-statement-parser/internal/domain"
-	pb "null-statement-parser/internal/gen/null/v1"
-	"null-statement-parser/internal/mapping"
-	"null-statement-parser/internal/parser"
+	"nagomi-statement-parser/internal/client"
+	"nagomi-statement-parser/internal/domain"
+	pb "nagomi-statement-parser/internal/gen/nagomi/v1"
+	"nagomi-statement-parser/internal/mapping"
+	"nagomi-statement-parser/internal/parser"
 
 	"github.com/joho/godotenv"
 )
@@ -123,18 +123,18 @@ func main() {
 		return
 	}
 
-	nullClient, err := client.NewClient(serverURL, "", apiKey)
+	nagomiClient, err := client.NewClient(serverURL, "", apiKey)
 	if err != nil {
 		log.Fatalf("client failed: %v", err)
 	}
-	defer nullClient.Close()
+	defer nagomiClient.Close()
 
-	_, err = nullClient.GetUser(userID)
+	_, err = nagomiClient.GetUser(userID)
 	if err != nil {
 		log.Fatalf("user not found: %v", err)
 	}
 
-	accounts, err := nullClient.GetAccounts(userID)
+	accounts, err := nagomiClient.GetAccounts(userID)
 	if err != nil {
 		log.Fatalf("get accounts failed: %v", err)
 	}
@@ -155,7 +155,7 @@ func main() {
 		}
 		seen[key] = true
 
-		matchedAccount, err := nullClient.FindAccountByAlias(userID, accountName)
+		matchedAccount, err := nagomiClient.FindAccountByAlias(userID, accountName)
 		if err != nil {
 			log.Fatalf("alias lookup failed: %v", err)
 		}
@@ -168,9 +168,9 @@ func main() {
 
 			if isNewAccount {
 				accountType := convertToAccountType(tx.StatementAccountType)
-				newAccount, err := nullClient.CreateAccount(userID, accountName, "RBC", accountType, "CAD")
+				newAccount, err := nagomiClient.CreateAccount(userID, accountName, "RBC", accountType, "CAD")
 				if err != nil {
-					freshAccounts, ferr := nullClient.GetAccounts(userID)
+					freshAccounts, ferr := nagomiClient.GetAccounts(userID)
 					if ferr != nil {
 						log.Fatalf("create account failed: %v (also failed to refresh accounts: %v)", err, ferr)
 					}
@@ -206,7 +206,7 @@ func main() {
 				}
 			}
 
-			if err := nullClient.AddAccountAlias(userID, matchedAccount.Id, accountName); err != nil {
+			if err := nagomiClient.AddAccountAlias(userID, matchedAccount.Id, accountName); err != nil {
 				log.Printf("WARN: failed to add alias: %v", err)
 			}
 		}
@@ -238,7 +238,7 @@ func main() {
 			end = len(transactions)
 		}
 
-		created, errors := nullClient.CreateTransactionsBulk(userID, transactions[i:end])
+		created, errors := nagomiClient.CreateTransactionsBulk(userID, transactions[i:end])
 		totalCreated += created
 		totalErrors += len(errors)
 

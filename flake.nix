@@ -44,7 +44,7 @@
       };
 
       packages.default = pkgs.buildGoModule {
-        pname = "null-statement-parser";
+        pname = "nagomi-statement-parser";
         version = self.shortRev or self.dirtyShortRev or "dev";
         src = ./.;
         vendorHash = "sha256-j1B9wTOC8E5eYyPRhfi4GHyz/iiRY4MlG1Yg3lNugpI=";

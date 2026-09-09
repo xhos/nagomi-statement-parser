@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"null-statement-parser/internal/domain"
+	"nagomi-statement-parser/internal/domain"
 )
 
 type PythonTransaction struct {

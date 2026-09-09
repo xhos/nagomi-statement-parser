@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 
-	"null-statement-parser/internal/domain"
-	pb "null-statement-parser/internal/gen/null/v1"
+	"nagomi-statement-parser/internal/domain"
+	pb "nagomi-statement-parser/internal/gen/nagomi/v1"
 
 	"github.com/charmbracelet/log"
 	money "google.golang.org/genproto/googleapis/type/money"

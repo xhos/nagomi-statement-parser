@@ -1,4 +1,4 @@
-module null-statement-parser
+module nagomi-statement-parser
 
 go 1.25.1
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
-	pb "null-statement-parser/internal/gen/null/v1"
+	pb "nagomi-statement-parser/internal/gen/nagomi/v1"
 
 	"github.com/charmbracelet/huh"
 )
@@ -13,7 +13,7 @@ const (
 	OptionNewAccount = "__new_account__"
 )
 
-// PromptForAccountMapping prompts the user to map a statement account to an existing ariand account
+// PromptForAccountMapping prompts the user to map a statement account to an existing nagomi account
 func PromptForAccountMapping(statementAccountNumber string, existingAccounts []*pb.Account) (string, bool, error) {
 	var selectedOption string
 	isNewAccount := false
